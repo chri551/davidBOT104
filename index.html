@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>davidBOT104 Chat</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+    #chat-container { max-width: 600px; margin: 40px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    #messages { list-style: none; padding: 0; max-height: 400px; overflow-y: auto; }
+    #messages li { margin-bottom: 10px; }
+    .user { text-align: right; color: #333; }
+    .bot { text-align: left; color: #007bff; }
+    #input-form { display: flex; margin-top: 20px; }
+    #input-form input { flex: 1; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; }
+    #input-form button { padding: 10px 20px; margin-left: 10px; font-size: 16px; border: none; background: #007bff; color: #fff; border-radius: 4px; cursor: pointer; }
+    #input-form button:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+  <div id="chat-container">
+    <h2>Chat con davidBOT104</h2>
+    <ul id="messages"></ul>
+    <form id="input-form">
+      <input type="text" id="message-input" placeholder="Scrivi un messaggio..." autocomplete="off" />
+      <button type="submit">Invia</button>
+    </form>
+  </div>
+  <script>
+    const messagesEl = document.getElementById('messages');
+    const form = document.getElementById('input-form');
+    const input = document.getElementById('message-input');
+
+    function addMessage(text, sender) {
+      const li = document.createElement('li');
+      li.textContent = text;
+      li.className = sender;
+      messagesEl.appendChild(li);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+      addMessage(text, 'user');
+      input.value = '';
+
+      // risposta fissa
+      setTimeout(() => {
+        addMessage('non ho capito', 'bot');
+      }, 300);
+    });
+  </script>
+</body>
+</html>
